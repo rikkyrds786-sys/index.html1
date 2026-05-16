@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MediCare Pro - Doctor Patient Management</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
+    body{background:#f7f8ff;color:#172033}
+    a{text-decoration:none;color:inherit}
+    .gradient{background:linear-gradient(135deg,#4f46e5,#06b6d4,#22c55e)}
+    header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);box-shadow:0 8px 30px #0001}
+    nav{max-width:1180px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:16px}
+    .logo{font-size:24px;font-weight:900;color:#4f46e5}
+    .navlinks{display:flex;gap:16px;flex-wrap:wrap}
+    .navlinks a{font-weight:700;color:#334155}
+    .btn{border:0;border-radius:14px;padding:12px 18px;font-weight:800;cursor:pointer;background:#4f46e5;color:white;box-shadow:0 10px 25px #4f46e544}
+    .btn.alt{background:white;color:#4f46e5;border:1px solid #dbe3ff}
+    .btn.green{background:#16a34a}
+    .hero{min-height:88vh;display:grid;place-items:center;padding:50px 16px;color:white}
+    .hero-inner{max-width:1180px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .hero h1{font-size:clamp(36px,6vw,70px);line-height:1.05;margin-bottom:18px}
+    .hero p{font-size:18px;line-height:1.7;opacity:.96;margin-bottom:24px}
+    .hero-card,.card{background:white;color:#172033;border-radius:28px;padding:24px;box-shadow:0 25px 70px #0002}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+    .stat{background:#ffffff22;border:1px solid #ffffff44;border-radius:18px;padding:16px}
+    .stat b{font-size:26px}
+    section{max-width:1180px;margin:auto;padding:70px 16px}
+    .title{text-align:center;margin-bottom:30px}
+    .title h2{font-size:36px;margin-bottom:10px}
+    .title p{color:#64748b}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .feature{background:white;border-radius:24px;padding:22px;box-shadow:0 12px 40px #00000010;border:1px solid #eef2ff}
+    .feature .icon{font-size:34px;margin-bottom:10px}
+    .feature h3{margin-bottom:10px;color:#1e293b}
+    .feature p{color:#64748b;line-height:1.6}
+    .panel{display:grid;grid-template-columns:260px 1fr;gap:20px;align-items:start}
+    .sidebar{background:#111827;color:white;border-radius:24px;padding:18px;position:sticky;top:92px}
+    .sidebar button{display:block;width:100%;text-align:left;margin:8px 0;background:#ffffff10;color:white;border:1px solid #ffffff18;border-radius:14px;padding:13px;cursor:pointer;font-weight:800}
+    .sidebar button.active{background:#4f46e5}
+    .dash{background:white;border-radius:24px;padding:22px;box-shadow:0 16px 50px #0001}
+    input,select,textarea{width:100%;padding:13px;border:1px solid #dbe3ef;border-radius:14px;margin:8px 0 14px;background:#f8fafc}
+    label{font-weight:800;color:#334155;font-size:14px}
+    textarea{min-height:90px;resize:vertical}
+    .formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    table{width:100%;border-collapse:collapse;margin-top:16px;overflow:hidden;border-radius:16px}
+    th,td{padding:13px;border-bottom:1px solid #eef2ff;text-align:left;font-size:14px}
+    th{background:#f1f5ff;color:#334155}
+    .tag{display:inline-block;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:900;background:#dcfce7;color:#166534}
+    .tag.warn{background:#fef3c7;color:#92400e}
+    .tag.bad{background:#fee2e2;color:#991b1b}
+    .patient-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:22px;padding:18px;margin-top:16px}
+    .footer{background:#0f172a;color:white;text-align:center;padding:30px}
+    .hidden{display:none}
+    .notice{background:#fff7ed;border:1px solid #fed7aa;border-radius:18px;padding:14px;color:#9a3412;margin-bottom:16px}
+    @media(max-width:850px){
+      .hero-inner,.panel{grid-template-columns:1fr}
+      .grid,.formgrid,.stats{grid-template-columns:1fr}
+      .sidebar{position:static}
+      .navlinks{display:none}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">🩺 MediCare Pro</div>
+    <div class="navlinks">
+      <a href="#features">Features</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#diagnostics">Diagnostics</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn" href="#dashboard">Open App</a>
+  </nav>
+</header>
+
+<div class="hero gradient">
+  <div class="hero-inner">
+    <div>
+      <h1>Doctor, Patient, Report & Appointment Management App</h1>
+      <p>Patients ka record, prescription receipt, medical reports, routine checkup, online meeting booking, clinic location, WhatsApp chat, diagnostics approval aur admin control — sab ek user-friendly system me.</p>
+      <button class="btn alt" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})">Start Demo</button>
+      <button class="btn green" onclick="openWhatsApp()">WhatsApp Demo</button>
+      <div class="stats">
+        <div class="stat"><b>500+</b><br/>Happy Patients</div>
+        <div class="stat"><b>24/7</b><br/>Secure Access</div>
+        <div class="stat"><b>10+</b><br/>Clinics Ready</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h2>Today Overview</h2><br/>
+      <p>✅ 12 Appointments Booked</p>
+      <p>✅ 35 Patient Records</p>
+      <p>✅ 8 Reports Generated</p>
+      <p>✅ 3 Diagnostics Pending Approval</p>
+      <br/>
+      <div class="notice">Demo app: GitHub Pages par direct chalega. Real payment/database ke liye backend connect karna hoga.</div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="title">
+    <h2>Complete Healthcare Features</h2>
+    <p>Doctor clinic, hospital aur diagnostics ke liye modern dashboard.</p>
+  </div>
+  <div class="grid">
+    <div class="feature"><div class="icon">👨‍⚕️</div><h3>Doctor Panel</h3><p>Doctor patient ID/name se patient search kare, report dekhe, treatment update kare.</p></div>
+    <div class="feature"><div class="icon">🧾</div><h3>Prescription Receipt</h3><p>Dawa, dosage, test advice aur follow-up date ka receipt generate kare.</p></div>
+    <div class="feature"><div class="icon">📅</div><h3>Online Meeting</h3><p>Patient pehle fee pay kare, fir video/clinic appointment book kare.</p></div>
+    <div class="feature"><div class="icon">💳</div><h3>Payment Options</h3><p>Pay at clinic, online payment, fee cycle: first time, monthly, per visit ya custom days.</p></div>
+    <div class="feature"><div class="icon">📍</div><h3>Google Location</h3><p>Clinic/hospital location link add kare aur patient direct map open kar sake.</p></div>
+    <div class="feature"><div class="icon">🔐</div><h3>Secure Data UI</h3><p>Patient data consent note, role based dashboard aur privacy-first design.</p></div>
+  </div>
+</section>
+
+<section id="dashboard">
+  <div class="title">
+    <h2>Live Demo Dashboard</h2>
+    <p>Yaha se admin, doctor aur patient features test kar sakte ho.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sidebar">
+      <h2>Admin Menu</h2>
+      <button class="active" onclick="showTab('patients',this)">Patients</button>
+      <button onclick="showTab('appointment',this)">Appointment</button>
+      <button onclick="showTab('prescription',this)">Prescription</button>
+      <button onclick="showTab('diagnostic',this)">Diagnostics Approval</button>
+      <button onclick="showTab('settings',this)">Fee & Clinic Settings</button>
+    </div>
+
+    <div class="dash">
+      <div id="patients" class="tab">
+        <h2>Patient Record Add / Search</h2>
+        <div class="formgrid">
+          <div><label>Patient ID</label><input id="pid" placeholder="PAT-1001"></div>
+          <div><label>Patient Name</label><input id="pname" placeholder="Rahul Sharma"></div>
+          <div><label>Mobile</label><input id="pmobile" placeholder="9876543210"></div>
+          <div><label>Age</label><input id="page" placeholder="32"></div>
+          <div><label>Disease / Problem</label><input id="pdisease" placeholder="Fever, BP, Diabetes"></div>
+          <div><label>Medical Report Link</label><input id="preport" placeholder="Google Drive / PDF Link"></div>
+        </div>
+        <button class="btn" onclick="savePatient()">Save / Update Patient</button>
+        <hr><br/>
+        <label>Search by Patient ID or Name</label>
+        <input id="searchPatient" oninput="renderPatients()" placeholder="Search patient...">
+        <div id="patientList"></div>
+      </div>
+
+      <div id="appointment" class="tab hidden">
+        <h2>Book Online / Clinic Appointment</h2>
+        <div class="formgrid">
+          <div><label>Patient Name</label><input id="aname" placeholder="Patient name"></div>
+          <div><label>Doctor</label><input id="adoctor" placeholder="Dr. Amit Kumar"></div>
+          <div><label>Appointment Type</label><select id="atype"><option>Online Video Meeting</option><option>Clinic Visit</option><option>Routine Checkup</option></select></div>
+          <div><label>Payment Mode</label><select id="apay"><option>Online Payment</option><option>Pay at Clinic/Hospital</option></select></div>
+          <div><label>Date</label><input id="adate" type="date"></div>
+          <div><label>Time</label><input id="atime" type="time"></div>
+        </div>
+        <button class="btn" onclick="bookAppointment()">Book Appointment</button>
+        <div id="appointmentList"></div>
+      </div>
+
+      <div id="prescription" class="tab hidden">
+        <h2>Prescription / Medicine Receipt</h2>
+        <div class="formgrid">
+          <div><label>Patient ID</label><input id="rpid" placeholder="PAT-1001"></div>
+          <div><label>Doctor Name</label><input id="rdoctor" placeholder="Dr. Amit Kumar"></div>
+        </div>
+        <label>Medicine & Dosage</label><textarea id="rmed" placeholder="Paracetamol 500mg - 2 times/day..."></textarea>
+        <label>Treatment Notes / Routine Checkup Update</label><textarea id="rnote" placeholder="BP normal, sugar test advised..."></textarea>
+        <button class="btn" onclick="createReceipt()">Generate Receipt</button>
+        <div id="receiptBox"></div>
+      </div>
+
+      <div id="diagnostic" class="tab hidden">
+        <h2 id="diagnostics">Hospital / Diagnostics Add + Admin Approval</h2>
+        <div class="formgrid">
+          <div><label>Diagnostics/Hospital Name</label><input id="dname" placeholder="City Diagnostics"></div>
+          <div><label>Owner Mobile</label><input id="dmobile" placeholder="9876543210"></div>
+          <div><label>Service</label><input id="dservice" placeholder="Blood Test, X-Ray, MRI"></div>
+          <div><label>Google Location Link</label><input id="dloc" placeholder="Paste Google Maps Link"></div>
+        </div>
+        <button class="btn" onclick="addDiagnostic()">Submit for Approval</button>
+        <div id="diagnosticList"></div>
+      </div>
+
+      <div id="settings" class="tab hidden">
+        <h2>Admin Fee, Location & Payment Settings</h2>
+        <div class="formgrid">
+          <div><label>First Visit Fee ₹</label><input id="feeFirst" value="500"></div>
+          <div><label>Repeat Fee ₹</label><input id="feeRepeat" value="300"></div>
+          <div><label>Repeat Fee After Days</label><input id="feeDays" value="15"></div>
+          <div><label>Razorpay/Payment Link</label><input id="payLink" placeholder="Paste payment link"></div>
+          <div><label>Clinic/Hospital Name</label><input id="clinicName" value="MediCare Clinic"></div>
+          <div><label>Google Location Link</label><input id="clinicLoc" placeholder="Paste Google Maps location"></div>
+        </div>
+        <button class="btn" onclick="saveSettings()">Save Settings</button>
+        <div id="settingsView" class="patient-card"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="title">
+    <h2>Doctor Checkup, Treatment & Happy Patients</h2>
+    <p>Clinic ka trust build karne ke liye website landing page sections.</p>
+  </div>
+  <div class="grid">
+    <div class="feature"><h3>🩺 Routine Checkup</h3><p>BP, sugar, fever, follow-up aur treatment progress update.</p></div>
+    <div class="feature"><h3>💊 Treatment History</h3><p>Old prescription, medical reports aur notes ek jagah.</p></div>
+    <div class="feature"><h3>😊 Happy Patients</h3><p>Testimonials aur success stories add karne ka section.</p></div>
+  </div>
+</section>
+
+<footer id="contact" class="footer">
+  <h2>MediCare Pro</h2>
+  <p>Secure healthcare management demo app</p><br/>
+  <button class="btn green" onclick="openWhatsApp()">Chat on WhatsApp</button>
+  <button class="btn alt" onclick="openMap()">Open Clinic Location</button>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+let patients = JSON.parse(localStorage.getItem('patients')||'[]');
+let appointments = JSON.parse(localStorage.getItem('appointments')||'[]');
+let diagnostics = JSON.parse(localStorage.getItem('diagnostics')||'[]');
+let settings = JSON.parse(localStorage.getItem('settings')||'{}');
+
+function showTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.add('hidden'));
+  document.querySelectorAll('.sidebar button').forEach(b=>b.classList.remove('active'));
+  $(id).classList.remove('hidden'); btn.classList.add('active');
+  renderPatients(); renderAppointments(); renderDiagnostics(); renderSettings();
+}
+function savePatient(){
+  const p={id:$('pid').value||'PAT-'+Date.now(),name:$('pname').value,mobile:$('pmobile').value,age:$('page').value,disease:$('pdisease').value,report:$('preport').value};
+  const i=patients.findIndex(x=>x.id===p.id);
+  if(i>=0) patients[i]=p; else patients.push(p);
+  localStorage.setItem('patients',JSON.stringify(patients));
+  alert('Patient saved successfully');
+  renderPatients();
+}
+function renderPatients(){
+  const q=($('searchPatient')?.value||'').toLowerCase();
+  const list=patients.filter(p=>p.id.toLowerCase().includes(q)||p.name.toLowerCase().includes(q));
+  $('patientList').innerHTML=list.map(p=>`
+    <div class="patient-card">
+      <h3>${p.name} <span class="tag">${p.id}</span></h3>
+      <p><b>Mobile:</b> ${p.mobile} | <b>Age:</b> ${p.age}</p>
+      <p><b>Problem:</b> ${p.disease}</p>
+      <p><b>Report:</b> ${p.report?`<a style="color:#4f46e5" target="_blank" href="${p.report}">Open Report</a>`:'No report'}</p>
+      <button class="btn alt" onclick="editPatient('${p.id}')">Edit</button>
+      <button class="btn" onclick="deletePatient('${p.id}')">Delete</button>
+    </div>`).join('') || '<p>No patient found</p>';
+}
+function editPatient(id){
+  const p=patients.find(x=>x.id===id); if(!p)return;
+  $('pid').value=p.id;$('pname').value=p.name;$('pmobile').value=p.mobile;$('page').value=p.age;$('pdisease').value=p.disease;$('preport').value=p.report;
+}
+function deletePatient(id){
+  patients=patients.filter(p=>p.id!==id);localStorage.setItem('patients',JSON.stringify(patients));renderPatients();
+}
+function bookAppointment(){
+  const a={name:$('aname').value,doctor:$('adoctor').value,type:$('atype').value,pay:$('apay').value,date:$('adate').value,time:$('atime').value,status:'Booked'};
+  appointments.push(a);localStorage.setItem('appointments',JSON.stringify(appointments));renderAppointments();
+}
+function renderAppointments(){
+  $('appointmentList').innerHTML='<table><tr><th>Patient</th><th>Doctor</th><th>Type</th><th>Payment</th><th>Date</th><th>Status</th></tr>'+
+  appointments.map(a=>`<tr><td>${a.name}</td><td>${a.doctor}</td><td>${a.type}</td><td>${a.pay}</td><td>${a.date} ${a.time}</td><td><span class="tag">${a.status}</span></td></tr>`).join('')+'</table>';
+}
+function createReceipt(){
+  const html=`<div class="patient-card"><h2>Prescription Receipt</h2><p><b>Patient ID:</b> ${$('rpid').value}</p><p><b>Doctor:</b> ${$('rdoctor').value}</p><p><b>Medicine:</b><br>${$('rmed').value}</p><p><b>Notes:</b><br>${$('rnote').value}</p><button class="btn" onclick="window.print()">Print / Save PDF</button></div>`;
+  $('receiptBox').innerHTML=html;
+}
+function addDiagnostic(){
+  diagnostics.push({name:$('dname').value,mobile:$('dmobile').value,service:$('dservice').value,loc:$('dloc').value,status:'Pending'});
+  localStorage.setItem('diagnostics',JSON.stringify(diagnostics));renderDiagnostics();
+}
+function approveDiag(i){diagnostics[i].status='Approved';localStorage.setItem('diagnostics',JSON.stringify(diagnostics));renderDiagnostics();}
+function rejectDiag(i){diagnostics[i].status='Rejected';localStorage.setItem('diagnostics',JSON.stringify(diagnostics));renderDiagnostics();}
+function renderDiagnostics(){
+  $('diagnosticList').innerHTML=diagnostics.map((d,i)=>`
+    <div class="patient-card">
+      <h3>${d.name} <span class="tag ${d.status==='Pending'?'warn':d.status==='Rejected'?'bad':''}">${d.status}</span></h3>
+      <p>${d.service} | ${d.mobile}</p>
+      <p>${d.loc?`<a style="color:#4f46e5" target="_blank" href="${d.loc}">Open Location</a>`:''}</p>
+      <button class="btn green" onclick="approveDiag(${i})">Approve</button>
+      <button class="btn" onclick="rejectDiag(${i})">Reject</button>
+    </div>`).join('');
+}
+function saveSettings(){
+  settings={feeFirst:$('feeFirst').value,feeRepeat:$('feeRepeat').value,feeDays:$('feeDays').value,payLink:$('payLink').value,clinicName:$('clinicName').value,clinicLoc:$('clinicLoc').value};
+  localStorage.setItem('settings',JSON.stringify(settings));renderSettings();alert('Settings saved');
+}
+function renderSettings(){
+  settings=JSON.parse(localStorage.getItem('settings')||'{}');
+  $('settingsView').innerHTML=`<h3>${settings.clinicName||'Clinic Name'}</h3><p>First Fee: ₹${settings.feeFirst||500}, Repeat Fee: ₹${settings.feeRepeat||300} after ${settings.feeDays||15} days</p><p>${settings.clinicLoc?`<a target="_blank" style="color:#4f46e5" href="${settings.clinicLoc}">Open Clinic Location</a>`:'Location not added'}</p>`;
+}
+function openWhatsApp(){ window.open('https://wa.me/919876543210?text=Hello%20Doctor%2C%20I%20want%20to%20book%20appointment','_blank'); }
+function openMap(){ const s=JSON.parse(localStorage.getItem('settings')||'{}'); window.open(s.clinicLoc||'https://maps.google.com','_blank'); }
+renderPatients();renderAppointments();renderDiagnostics();renderSettings();
+</script>
+</body>
+</html>
